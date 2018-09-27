@@ -1,5 +1,10 @@
-function abc_render() {
-  ABCJS.renderAbc("paper", abc, {responsive: 'resize'});
-  ABCJS.renderMidi("midi", abc);
-  ABCJS.renderMidi("midi-download", abc, { generateDownload: true, generateInline: false });
+function abc_render(abc_data, play_midi, download_midi) {
+  ABCJS.renderAbc("abc_image", abc_data, {
+    responsive: 'resize'
+  });
+  if (play_midi) ABCJS.renderMidi("abc_midi_player", abc_data);
+  if (download_midi) ABCJS.renderMidi("abc_midi_download", abc_data, {
+    generateDownload: true,
+    generateInline: false
+  });
 }

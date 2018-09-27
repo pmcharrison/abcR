@@ -7,3 +7,6 @@ Depends: R (>= 3.5.1)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
+Imports: checkmate,
+    shiny,
+    htmltools
