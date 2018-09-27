@@ -1,12 +1,16 @@
 #' @export
-abc_html_from_file <- function(x, play_midi = TRUE, download_midi = FALSE, html_id = "abc") {
+abc_html_from_file <- function(x,
+                               play_midi = TRUE,
+                               download_midi = FALSE,
+                               online = is_online(),
+                               html_id = "abc") {
   checkmate::qassert(x, "S1")
   checkmate::qassert(play_midi, "B1")
   checkmate::qassert(download_midi, "B1")
   checkmate::qassert(html_id, "S1")
   shiny::div(
     id = html_id,
-    load_abcjs(),
+    load_abcjs(online = online),
     load_abc_score(x),
     abc_content(play_midi = play_midi, download_midi = download_midi),
     abc_render(play_midi = play_midi, download_midi = download_midi)
@@ -41,10 +45,16 @@ load_abc_score <- function(x) {
   shiny::tags$script(shiny::HTML(sprintf('var abc_data = "%s";', score)))
 }
 
-load_abcjs <- function() {
+load_abcjs <- function(online) {
   list(
-    shiny::includeScript(system.file("js/packages/abcjs_midi_5.2.0-min.js",
-                                     package = "abcR")),
+    if (online) {
+      shiny::tags$script(
+        type = "text/javascript",
+        src = "http://code.pmcharrison.com/abcjs_midi_5.2.0-min.js")
+    } else {
+      shiny::includeScript(system.file("js/packages/abcjs_midi_5.2.0-min.js",
+                                       package = "abcR"))
+    },
     shiny::includeCSS(system.file("css/abcjs-midi.css",
                                   package = "abcR")),
     shiny::tags$script(type = "text/javascript",
