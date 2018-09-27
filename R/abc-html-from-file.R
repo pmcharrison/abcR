@@ -2,18 +2,20 @@
 abc_html_from_file <- function(x,
                                play_midi = TRUE,
                                download_midi = FALSE,
-                               online = is_online(),
-                               html_id = "abc") {
+                               html_id = "abc",
+                               staff_width = 740) {
   checkmate::qassert(x, "S1")
   checkmate::qassert(play_midi, "B1")
   checkmate::qassert(download_midi, "B1")
   checkmate::qassert(html_id, "S1")
+  checkmate::qassert(staff_width, "X1")
   shiny::div(
     id = html_id,
-    load_abcjs(online = online),
+    load_abcjs(),
     load_abc_score(x),
     abc_content(play_midi = play_midi, download_midi = download_midi),
-    abc_render(play_midi = play_midi, download_midi = download_midi)
+    abc_render(play_midi = play_midi, download_midi = download_midi,
+               staff_width = staff_width)
   )
 }
 
@@ -29,12 +31,13 @@ abc_content <- function(play_midi, download_midi) {
   )
 }
 
-abc_render <- function(play_midi, download_midi) {
+abc_render <- function(play_midi, download_midi, staff_width) {
   list(
     shiny::includeScript(system.file("js/abc-render.js", package = "abcR")),
-    shiny::tags$script(sprintf("abc_render(abc_data, %s, %s);",
+    shiny::tags$script(sprintf("abc_render(abc_data, %s, %s, %i);",
                                tolower(play_midi),
-                               tolower(download_midi)))
+                               tolower(download_midi),
+                               staff_width))
   )
 }
 
@@ -45,16 +48,10 @@ load_abc_score <- function(x) {
   shiny::tags$script(shiny::HTML(sprintf('var abc_data = "%s";', score)))
 }
 
-load_abcjs <- function(online) {
+load_abcjs <- function() {
   list(
-    if (online) {
-      shiny::tags$script(
-        type = "text/javascript",
-        src = "http://code.pmcharrison.com/abcjs_midi_5.2.0-min.js")
-    } else {
-      shiny::includeScript(system.file("js/packages/abcjs_midi_5.2.0-min.js",
-                                       package = "abcR"))
-    },
+    shiny::includeScript(system.file("js/packages/abcjs_midi_5.2.0-min.js",
+                                     package = "abcR")),
     shiny::includeCSS(system.file("css/abcjs-midi.css",
                                   package = "abcR")),
     shiny::tags$script(type = "text/javascript",
