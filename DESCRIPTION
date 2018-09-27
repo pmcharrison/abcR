@@ -13,5 +13,7 @@ Imports: checkmate,
     tibble,
     rlang,
     magrittr,
-    dplyr
+    dplyr,
+    knitr,
+    webshot
 RoxygenNote: 6.1.0
