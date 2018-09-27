@@ -1,0 +1,6 @@
+To save image to file:
+
+- knit as HTML file
+- use webshot to extract the image as pdf, as follows:
+
+webshot::webshot("file://localhost/Users/peter/Dropbox/Academic/projects/abcR/test.html", file = "webshot.pdf", selector = "#abc_image")
