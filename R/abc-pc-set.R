@@ -1,15 +1,19 @@
 #' @export
 abc_html_from_pc_set <- function(x,
-                                 play_midi = TRUE,
+                                 play_midi = FALSE,
                                  download_midi = FALSE,
-                                 staff_width = 100) {
+                                 staff_width = 100,
+                                 container_style = "max-width: 200px",
+                                 ...) {
   checkmate::qassert(x, "X+")
   str <- sprintf("L:1\n[%s]",
                  spell_pc_set(x) %>% paste(collapse = ""))
   abc_html_from_string(str,
                        play_midi = play_midi,
                        download_midi = download_midi,
-                       staff_width = staff_width)
+                       staff_width = staff_width,
+                       container_style = container_style,
+                       ... = ...)
 }
 
 #' @export

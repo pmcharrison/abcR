@@ -1,6 +1,6 @@
 #' @export
 abc_view_string <- function(...,
-                            play_midi = TRUE,
+                            play_midi = FALSE,
                             download_midi = FALSE,
                             staff_width = 740) {
   view_html(abc_html_from_string(...,
@@ -11,7 +11,7 @@ abc_view_string <- function(...,
 
 #' @export
 abc_view_file <- function(x,
-                          play_midi = TRUE,
+                          play_midi = FALSE,
                           download_midi = FALSE,
                           staff_width = 740) {
   view_html(abc_html_from_file(x,
