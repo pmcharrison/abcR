@@ -32,24 +32,28 @@ devtools::install_github("pmcharrison/abcR")
 
 ## Example usage
 
+Note: 
+Github doesn't allow README files to contain Javascript,
+so examples can't be shown directly here.
+
+Displaying a pitch-class set within RStudio:
+
+```r
+abc_view_pc_set(c(0, 4, 7))
+```
+
 Displaying a pitch-class set within an R markdown file:
 
-```{r, include = TRUE}
+```r
 library(abcR)
 abc_html_from_pc_set(c(0, 4, 9))
 ```
 
 Displaying an *abc* file:
 
-```{r, include = TRUE}
+```r
 abc_html_from_file(system.file("examples/example-song.abc",
                                package = "abcR"))
-```
-
-Displaying a pitch-class set within RStudio:
-
-```r
-abc_view_pc_set(c(0, 4, 7))
 ```
 
 ## Authors
