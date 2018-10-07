@@ -2,7 +2,8 @@
 abcR
 ====
 
-*abcR* is a wrapper for the *[abcjs](https://abcjs.net/%5D)* javascript library.
+*abcR* is an R package for rendering sheet music using 
+the *[abcjs](https://abcjs.net/%5D)* javascript library.
 
 Status
 ------
