@@ -39,13 +39,13 @@ so examples can't be shown directly here.
 Displaying a pitch-class set within RStudio:
 
 ```r
-abc_view_pc_set(c(0, 4, 7))
+view_pc_set(c(0, 4, 7))
 ```
 
 Displaying a chord of MIDI pitches:
 
 ```r
-abc_view_midi_chord_seq(list(c(48, 64, 67), c(47, 62, 67), c(48, 64, 67)))
+view_midi_chord_seq(list(c(48, 64, 67), c(47, 62, 67), c(48, 64, 67)))
 ```
 
 Displaying a pitch-class set within an R markdown file:

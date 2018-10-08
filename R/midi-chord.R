@@ -18,7 +18,7 @@ html_from_midi_chord <- function(x,
 }
 
 #' @export
-abc_view_midi_chord <- function(x, ...) {
+view_midi_chord <- function(x, ...) {
   view_html(html_from_midi_chord(x, ...))
 }
 
