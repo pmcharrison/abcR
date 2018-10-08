@@ -10,7 +10,7 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 ```
-# abcR
+# abcR v`r as.character(packageVersion("abcR"))`
 
 *abcR* is a wrapper for the *[abcjs](https://abcjs.net/])* javascript library.
 
