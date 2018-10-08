@@ -1,10 +1,10 @@
 #' @export
 html_from_midi_chord_seq <- function(x,
-                                         chords_per_line = 5,
-                                         staff_width = 75 * pmin(pmax(2, length(x)), 5),
-                                         play_midi = FALSE,
-                                         download_midi = FALSE,
-                                         ...) {
+                                     chords_per_line = 5,
+                                     staff_width = 75 * pmin(pmax(2, length(x)), 5),
+                                     play_midi = TRUE,
+                                     download_midi = FALSE,
+                                     ...) {
   checkmate::qassert(x, "l")
 
   y <- purrr::map(x, spell_midi_chord) %>% (dplyr::bind_rows)

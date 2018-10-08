@@ -1,10 +1,10 @@
 #' @export
 html_from_pc_set <- function(x,
-                                 play_midi = FALSE,
-                                 download_midi = FALSE,
-                                 staff_width = 100,
-                                 container_style = "max-width: 200px",
-                                 ...) {
+                             play_midi = TRUE,
+                             download_midi = FALSE,
+                             staff_width = 100,
+                             container_style = "max-width: 200px",
+                             ...) {
   checkmate::qassert(x, "X+")
   x <- sort(unique(x %% 12))
   str <- sprintf("L:1\n[%s]", spell_pcs(x) %>% paste(collapse = ""))

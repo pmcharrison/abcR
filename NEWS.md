@@ -1,4 +1,5 @@
 * Renaming functions
+* Enabling play_midi by default
 
 # abcR 0.0.0.9003
 
