@@ -1,15 +1,12 @@
 context("test-spell_midi_chord")
 
 test_that("examples", {
-  x <- c("C,", "E", "G")
-  attr(x, "octaves") <- c(-1, 0, 0)
-  expect_equal(spell_midi_chord(c(48, 64, 67)), x)
+  expect_equal(spell_midi_chord(c(48, 64, 67)),
+               list(bass = "[C,]", treble = "[EG]"))
 
-  x <- c("C,", "E", "G", "C'")
-  attr(x, "octaves") <- c(-1, 0, 0, 1)
-  expect_equal(spell_midi_chord(c(48, 64, 67, 72)), x)
+  expect_equal(spell_midi_chord(c(48, 64, 67, 72)),
+               list(bass = "[C,]", treble = "[EGC']"))
 
-  x <- c("C,", "^D", "E", "G", "C'")
-  attr(x, "octaves") <- c(-1, 0, 0, 0, 1)
-  expect_equal(spell_midi_chord(c(48, 63, 64, 67, 72)), x)
+  expect_equal(spell_midi_chord(c(48, 63, 64, 67, 72)),
+               list(bass = "[C,]", treble = "[^DEGC']"))
 })

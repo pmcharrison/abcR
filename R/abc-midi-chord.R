@@ -6,12 +6,9 @@ abc_html_from_midi_chord <- function(x,
                                      container_style = "max-width: 200px",
                                      ...) {
   checkmate::qassert(x, "X+")
-  spelt <- spell_midi_chord(x)
-  is_bass <- attr(spelt, "octaves") < 0
-  bass <- spelt[is_bass] %>% paste(collapse = "")
-  sop <- spelt[!is_bass] %>% paste(collapse = "")
-
-  str <- sprintf("L:1\nV:1 treble\nV:2 bass\n[V:1][%s]\n[V:2][%s]", sop, bass)
+  y <- spell_midi_chord(x)
+  str <- sprintf("L:1\nV:1 treble\nV:2 bass\n[V:1][%s]\n[V:2][%s]",
+                 y$treble, y$bass)
   abc_html_from_string(str,
                        play_midi = play_midi,
                        download_midi = download_midi,
@@ -37,6 +34,12 @@ spell_midi_chord <- function(x, duplication_cost = 5) {
     strrep(",", pmax(0, - octaves)),
     sep = ""
   )
-  attr(res, "octaves") <- octaves
-  res
+  is_bass <- octaves < 0
+  bass <- res[is_bass] %>% paste(collapse = "")
+  treble <- res[!is_bass] %>% paste(collapse = "")
+
+  if (bass == "") bass <- "z" else bass <- paste0("[", bass, "]")
+  if (treble == "") treble <- "z" else treble <- paste0("[", treble, "]")
+
+  list(bass = bass, treble = treble)
 }
