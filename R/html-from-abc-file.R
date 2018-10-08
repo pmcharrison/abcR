@@ -10,7 +10,7 @@ new_abc_id <- function() {
 }
 
 #' @export
-abc_html_from_file <- function(x,
+html_from_abc_file <- function(x,
                                play_midi = FALSE,
                                download_midi = FALSE,
                                id = new_abc_id(),

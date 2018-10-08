@@ -1,5 +1,5 @@
 #' @export
-abc_html_from_midi_chord <- function(x,
+html_from_midi_chord <- function(x,
                                      play_midi = FALSE,
                                      download_midi = FALSE,
                                      staff_width = 100,
@@ -9,7 +9,7 @@ abc_html_from_midi_chord <- function(x,
   y <- spell_midi_chord(x)
   str <- sprintf("L:1\nV:1 treble\nV:2 bass\n[V:1][%s]\n[V:2][%s]",
                  y$treble, y$bass)
-  abc_html_from_string(str,
+  html_from_abc_string(str,
                        play_midi = play_midi,
                        download_midi = download_midi,
                        staff_width = staff_width,
@@ -19,7 +19,7 @@ abc_html_from_midi_chord <- function(x,
 
 #' @export
 abc_view_midi_chord <- function(x, ...) {
-  view_html(abc_html_from_midi_chord(x, ...))
+  view_html(html_from_midi_chord(x, ...))
 }
 
 #' @export

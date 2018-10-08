@@ -40,13 +40,13 @@ Displaying a pitch-class set within an R markdown file:
 
 ``` r
 library(abcR)
-abc_html_from_pc_set(c(0, 4, 9))
+html_from_pc_set(c(0, 4, 9))
 ```
 
 Displaying an *abc* file:
 
 ``` r
-abc_html_from_file(system.file("examples/example-song.abc",
+html_from_abc_file(system.file("examples/example-song.abc",
                                package = "abcR"))
 ```
 

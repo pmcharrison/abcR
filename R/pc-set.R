@@ -1,5 +1,5 @@
 #' @export
-abc_html_from_pc_set <- function(x,
+html_from_pc_set <- function(x,
                                  play_midi = FALSE,
                                  download_midi = FALSE,
                                  staff_width = 100,
@@ -8,7 +8,7 @@ abc_html_from_pc_set <- function(x,
   checkmate::qassert(x, "X+")
   x <- sort(unique(x %% 12))
   str <- sprintf("L:1\n[%s]", spell_pcs(x) %>% paste(collapse = ""))
-  abc_html_from_string(str,
+  html_from_abc_string(str,
                        play_midi = play_midi,
                        download_midi = download_midi,
                        staff_width = staff_width,
@@ -17,8 +17,8 @@ abc_html_from_pc_set <- function(x,
 }
 
 #' @export
-abc_view_pc_set <- function(x, ...) {
-  view_html(abc_html_from_pc_set(x, ...))
+view_pc_set <- function(x, ...) {
+  view_html(html_from_pc_set(x, ...))
 }
 
 pc_set_key <- tibble::tribble(

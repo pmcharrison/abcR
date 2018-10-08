@@ -1,3 +1,5 @@
+* Renaming functions
+
 # abcR 0.0.0.9003
 
 * Adding support for rendering single MIDI chords
