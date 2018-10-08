@@ -1,6 +1,6 @@
 Package: abcR
 Title: Renders ABC notation using the abcjs package.
-Version: 0.0.0.9003
+Version: 0.0.0.9004
 Authors@R: person("Peter", "Harrison", email = "pmc.harrison@gmail.com", role = c("aut", "cre"))
 Description: Renders ABC notation using the abcjs package (https://abcjs.net).
 Depends: R (>= 3.5.0)
