@@ -1,3 +1,5 @@
+* Adding support for rendering single MIDI chords
+
 # abcR 0.0.0.9002
 
 * Alpha release

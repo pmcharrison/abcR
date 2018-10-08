@@ -42,6 +42,12 @@ Displaying a pitch-class set within RStudio:
 abc_view_pc_set(c(0, 4, 7))
 ```
 
+Displaying a chord of MIDI pitches:
+
+```r
+abc_view_midi_chord(c(60, 64, 67))
+```
+
 Displaying a pitch-class set within an R markdown file:
 
 ```r

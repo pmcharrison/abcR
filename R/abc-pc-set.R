@@ -6,8 +6,8 @@ abc_html_from_pc_set <- function(x,
                                  container_style = "max-width: 200px",
                                  ...) {
   checkmate::qassert(x, "X+")
-  str <- sprintf("L:1\n[%s]",
-                 spell_pc_set(x) %>% paste(collapse = ""))
+  x <- sort(unique(x %% 12))
+  str <- sprintf("L:1\n[%s]", spell_pcs(x) %>% paste(collapse = ""))
   abc_html_from_string(str,
                        play_midi = play_midi,
                        download_midi = download_midi,
@@ -41,9 +41,9 @@ cost_by_sharp <- c(F = 1, C = 2, G = 3, D = 4, A = 5)
 cost_by_flat <- c(B = 1, E = 2, A = 3, D = 4, G = 5)
 
 #' @export
-spell_pc_set <- function(x, duplication_cost = 5) {
-  checkmate::qassert(x, "X+")
-  x <- sort(x)
+spell_pcs <- function(x, duplication_cost = 5) {
+  if (length(x) == 0L) character()
+  checkmate::qassert(x, "X[0,12)")
   N <- length(x)
   res <- tibble::tibble(pc = x) %>%
     dplyr::mutate(is_natural = !is.na(pc_set_key$natural[.data$pc + 1L])) %>%
@@ -61,9 +61,12 @@ spell_pc_set <- function(x, duplication_cost = 5) {
     duplication_cost * (res$with_flats %>% table %>%
                           Filter(function(x) x > 1L, .) %>% length)
   use_sharps <- cost_sharp <= cost_flat
-  duplicated_letters <- res[[if (use_sharps) "with_sharps" else "with_flats"]] %>%
-    table %>% Filter(function(x) x > 1L, .) %>% names
-  res$force_accidental <- res[[if (use_sharps) "with_sharps" else "with_flats"]] %in% duplicated_letters
+  accidental_letters <- res[[if (use_sharps) "with_sharps" else "with_flats"]] %>%
+    unique %>%
+    purrr::keep(function(letter) {
+      any(!res$is_natural[res[[if (use_sharps) "with_sharps" else "with_flats"]] == letter])
+    })
+  res$force_accidental <- res[[if (use_sharps) "with_sharps" else "with_flats"]] %in% accidental_letters
   res <- dplyr::mutate(res, final = paste(
     dplyr::case_when(
       .data$is_natural ~ dplyr::case_when(.data$force_accidental ~ "=",
