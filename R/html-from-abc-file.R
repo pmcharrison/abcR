@@ -21,7 +21,7 @@ html_from_abc_file <- function(x,
   checkmate::qassert(download_midi, "B1")
   checkmate::qassert(id, "I1")
   checkmate::qassert(staff_width, "X1")
-  shiny::div(
+  res <- shiny::div(
     id = paste0("abc_", id),
     load_abcjs(),
     load_abc_score(x, id),
@@ -31,6 +31,8 @@ html_from_abc_file <- function(x,
                staff_width = staff_width,
                container_style = container_style)
   )
+  attr(res, "id") <- paste0("abc_image_", id)
+  res
 }
 
 abc_content <- function(id, play_midi, download_midi) {
