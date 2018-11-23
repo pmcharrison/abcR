@@ -1,5 +1,5 @@
 #' @export
-html_from_midi_chord_seq <- function(x,
+html_from_pi_chord_seq <- function(x,
                                      chords_per_line = 5,
                                      staff_width = 75 * pmin(pmax(2, length(x)), 5),
                                      play_midi = TRUE,
@@ -7,7 +7,7 @@ html_from_midi_chord_seq <- function(x,
                                      ...) {
   checkmate::qassert(x, "l")
 
-  y <- purrr::map(x, spell_midi_chord) %>% (dplyr::bind_rows)
+  y <- purrr::map(x, spell_pi_chord) %>% (dplyr::bind_rows)
   by_row <- split(y, floor(seq(from = 0, length.out = nrow(y)) / chords_per_line))
   score <- purrr::map_chr(by_row, function(t) {
     treble_str <- paste0("[V:1]", paste(t$treble, collapse = "|"), "|")
@@ -25,6 +25,6 @@ html_from_midi_chord_seq <- function(x,
 }
 
 #' @export
-view_midi_chord_seq <- function(x, ...) {
-  view_html(html_from_midi_chord_seq(x, ...))
+view_pi_chord_seq <- function(x, ...) {
+  view_html(html_from_pi_chord_seq(x, ...))
 }

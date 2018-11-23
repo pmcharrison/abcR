@@ -10,7 +10,9 @@ knitr::opts_chunk$set(
   out.width = "100%"
 )
 ```
-# abcR v`r as.character(packageVersion("abcR"))`
+# abcR
+
+[![lifecycle](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://www.tidyverse.org/lifecycle/#experimental)
 
 *abcR* is a wrapper for the *[abcjs](https://abcjs.net/])* javascript library.
 
@@ -39,19 +41,19 @@ so examples can't be shown directly here.
 Displaying a pitch-class set within RStudio:
 
 ```r
+library(abcR)
 view_pc_set(c(0, 4, 7))
 ```
 
-Displaying a chord of MIDI pitches:
+Displaying a chord sequence (pitches are given in MIDI note numbers):
 
 ```r
-view_midi_chord_seq(list(c(48, 64, 67), c(47, 62, 67), c(48, 64, 67)))
+view_pi_chord_seq(list(c(48, 64, 67), c(47, 62, 67), c(48, 64, 67)))
 ```
 
 Displaying a pitch-class set within an R markdown file:
 
 ```r
-library(abcR)
 html_from_pc_set(c(0, 4, 9))
 ```
 

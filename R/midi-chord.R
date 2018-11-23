@@ -1,12 +1,12 @@
 #' @export
-html_from_midi_chord <- function(x,
+html_from_pi_chord <- function(x,
                                  play_midi = TRUE,
                                  download_midi = FALSE,
                                  staff_width = 100,
                                  container_style = "max-width: 200px",
                                  ...) {
   checkmate::qassert(x, "X+")
-  y <- spell_midi_chord(x)
+  y <- spell_pi_chord(x)
   str <- sprintf("L:1\nV:1 treble\nV:2 bass\n[V:1][%s]\n[V:2][%s]",
                  y$treble, y$bass)
   html_from_abc_string(str,
@@ -18,16 +18,16 @@ html_from_midi_chord <- function(x,
 }
 
 #' @export
-view_midi_chord <- function(x, ...) {
-  view_html(html_from_midi_chord(x, ...))
+view_pi_chord <- function(x, ...) {
+  view_html(html_from_pi_chord(x, ...))
 }
 
 #' @export
-spell_midi_chord <- function(x, duplication_cost = 5) {
+spell_pi_chord <- function(x, duplication_cost = 5) {
   checkmate::qassert(x, "X*")
   checkmate::qassert(duplication_cost, "R1[0,]")
-  letters <- spell_pcs(midi_to_pc(x))
-  octaves <- midi_to_octave(x)
+  letters <- spell_pcs(pi_to_pc(x))
+  octaves <- pi_to_octave(x)
   res <- paste(
     letters,
     strrep("'", pmax(0, octaves)),
