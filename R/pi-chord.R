@@ -11,7 +11,7 @@ html_from_pi_chord <- function(x,
                 if (!is.null(y$treble)) "V:1 treble\n",
                 if (!is.null(y$bass)) "V:2 bass\n",
                 if (!is.null(y$treble)) paste0("[V:1][", y$treble, "]\n"),
-                if (!is.null(y$bass)) paste0("[V:2][", y$bass, "]\n")) %>% print
+                if (!is.null(y$bass)) paste0("[V:2][", y$bass, "]\n"))
   html_from_abc_string(str,
                        play_midi = play_midi,
                        download_midi = download_midi,
