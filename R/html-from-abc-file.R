@@ -11,7 +11,7 @@ new_abc_id <- function() {
 
 #' @export
 html_from_abc_file <- function(x,
-                               play_midi = TRUE,
+                               play_midi = FALSE,
                                download_midi = FALSE,
                                id = new_abc_id(),
                                staff_width = 740,

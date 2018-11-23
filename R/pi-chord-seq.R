@@ -2,7 +2,7 @@
 html_from_pi_chord_seq <- function(x,
                                      chords_per_line = 5,
                                      staff_width = 75 * pmin(pmax(2, length(x)), 5),
-                                     play_midi = TRUE,
+                                     play_midi = FALSE,
                                      download_midi = FALSE,
                                      ...) {
   checkmate::qassert(x, "l")

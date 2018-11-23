@@ -1,6 +1,6 @@
 #' @export
 html_from_pi_chord <- function(x,
-                                 play_midi = TRUE,
+                                 play_midi = FALSE,
                                  download_midi = FALSE,
                                  staff_width = 100,
                                  container_style = "max-width: 200px",
