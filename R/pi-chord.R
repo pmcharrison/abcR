@@ -1,10 +1,10 @@
 #' @export
 html_from_pi_chord <- function(x,
-                                 play_midi = FALSE,
-                                 download_midi = FALSE,
-                                 staff_width = 100,
-                                 container_style = "max-width: 200px",
-                                 ...) {
+                               play_midi = FALSE,
+                               download_midi = FALSE,
+                               staff_width = 100,
+                               container_style = "max-width: 200px",
+                               ...) {
   checkmate::qassert(x, "X+")
   y <- spell_pi_chord(x)
   str <- sprintf("L:1\nV:1 treble\nV:2 bass\n[V:1][%s]\n[V:2][%s]",
