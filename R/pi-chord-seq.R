@@ -10,9 +10,11 @@ html_from_pi_chord_seq <- function(x,
   y <- purrr::map(x, spell_pi_chord) %>% (dplyr::bind_rows)
   by_row <- split(y, floor(seq(from = 0, length.out = nrow(y)) / chords_per_line))
   score <- purrr::map_chr(by_row, function(t) {
-    treble_str <- paste0("[V:1]", paste(t$treble, collapse = "|"), "|")
-    bass_str <- paste0("[V:2]", paste(t$bass, collapse = "|"), "|")
-    paste0(treble_str, "\n", bass_str)
+    treble_str <- if (all(t$treble == "x")) NULL else
+      paste0("[V:1]", paste(t$treble, collapse = "|"), "|")
+    bass_str <- if (all(t$bass == "x")) NULL else
+      paste0("[V:2]", paste(t$bass, collapse = "|"), "|")
+    paste(c(treble_str, bass_str), collapse = "\n")
   }) %>% paste(collapse = "\n%\n")
 
   str <- sprintf("L:1\nV:1 treble\nV:2 bass\n%s", score)

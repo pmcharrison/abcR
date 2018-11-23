@@ -8,10 +8,10 @@ html_from_pi_chord <- function(x,
   checkmate::qassert(x, "X+")
   y <- spell_pi_chord(x)
   str <- paste0("L:1\n",
-                if (!is.null(y$treble)) "V:1 treble\n",
-                if (!is.null(y$bass)) "V:2 bass\n",
-                if (!is.null(y$treble)) paste0("[V:1][", y$treble, "]\n"),
-                if (!is.null(y$bass)) paste0("[V:2][", y$bass, "]\n"))
+                if (y$treble != "x") "V:1 treble\n",
+                if (y$bass != "x") "V:2 bass\n",
+                if (y$treble != "x") paste0("[V:1]", y$treble, "\n"),
+                if (y$bass != "x") paste0("[V:2]", y$bass, "\n"))
   html_from_abc_string(str,
                        play_midi = play_midi,
                        download_midi = download_midi,
@@ -41,8 +41,8 @@ spell_pi_chord <- function(x, duplication_cost = 5) {
   bass <- res[is_bass] %>% paste(collapse = "")
   treble <- res[!is_bass] %>% paste(collapse = "")
 
-  if (bass == "") bass <- NULL else bass <- paste0("[", bass, "]")
-  if (treble == "") treble <- NULL else treble <- paste0("[", treble, "]")
+  if (bass == "") bass <- "x" else bass <- paste0("[", bass, "]")
+  if (treble == "") treble <- "x" else treble <- paste0("[", treble, "]")
 
   list(bass = bass, treble = treble)
 }
