@@ -1,3 +1,6 @@
+* Adding annotations to chord sequences
+* Removing unnecessary functions for viewing pitch-class sets
+
 # abcR 0.0.0.9004
 
 * Renaming functions
