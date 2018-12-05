@@ -7,8 +7,11 @@ html_from_pi_chord_seq <- function(x,
                                    download_midi = FALSE,
                                    ...) {
   checkmate::qassert(x, "l")
-  if (!is.null(annotate)) stopifnot(is.character(annotate),
-                                    length(annotate) == length(x))
+  if (!is.null(annotate)) {
+    annotate <- as.character(annotate)
+    stopifnot(is.character(annotate),
+              length(annotate) == length(x))
+  }
   if (any(grepl("\\s", annotate)))
     stop("<annotate> strings may not contain whitespace")
 
