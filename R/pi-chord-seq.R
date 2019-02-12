@@ -19,10 +19,8 @@ html_from_pi_chord_seq <- function(x,
   if (!is.null(annotate)) y$annotate <- annotate
   by_row <- split(y, floor(seq(from = 0, length.out = nrow(y)) / chords_per_line))
   score <- purrr::map_chr(by_row, function(t) {
-    treble_str <- if (all(t$treble == "x")) NULL else
-      paste0("[V:1]", paste(t$treble, collapse = "|"), "|")
-    bass_str <- if (all(t$bass == "x")) NULL else
-      paste0("[V:2]", paste(t$bass, collapse = "|"), "|")
+    treble_str <- paste0("[V:1]", paste(t$treble, collapse = "|"), "|")
+    bass_str <- paste0("[V:2]", paste(t$bass, collapse = "|"), "|")
     annotate_str <- if (!is.null(annotate))
       paste(c("w:", t$annotate), collapse = " ")
     paste(c(treble_str,
