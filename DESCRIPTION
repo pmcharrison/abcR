@@ -1,5 +1,5 @@
 Package: abcR
-Title: Renders ABC notation using the abcjs package.
+Title: Renders ABC notation using the abcjs package
 Version: 0.0.0.9006
 Authors@R: person("Peter", "Harrison", email = "pmc.harrison@gmail.com", role = c("aut", "cre"))
 Description: Renders ABC notation using the abcjs package (https://abcjs.net).
@@ -16,7 +16,8 @@ Imports:
     magrittr (>= 1.5),
     dplyr,
     knitr (>= 1.20),
-    webshot (>= 0.5.0)
+    webshot (>= 0.5.0),
+    purrr
 RoxygenNote: 6.1.1
 URL: https://github.com/pmcharrison/abcR
 BugReports: https://github.com/pmcharrison/abcR/issues

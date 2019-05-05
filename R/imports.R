@@ -3,3 +3,5 @@ NULL
 
 #' @importFrom magrittr "%>%"
 NULL
+
+`.` <- NULL

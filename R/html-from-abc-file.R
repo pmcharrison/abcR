@@ -1,4 +1,3 @@
-#' @param container_style CSS style specification; any double quotes must be escaped
 #' @export
 abc_id_counter <- new.env()
 abc_id_counter$val <- 0L
@@ -9,6 +8,7 @@ new_abc_id <- function() {
   abc_id_counter$val
 }
 
+# @param container_style CSS style specification; any double quotes must be escaped
 #' @export
 html_from_abc_file <- function(x,
                                play_midi = FALSE,
