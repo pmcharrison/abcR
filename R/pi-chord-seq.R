@@ -1,11 +1,53 @@
+#' View a sequence of pitch chords
+#'
+#' Displays a chord sequence, where each chord is expressed as a
+#' vector of MIDI note numbers.
+#'
+#' @param x
+#' Chord sequence to display, expressed as a list of numeric vectors,
+#' where each vector expresses a single chord as a list of MIDI
+#' note numbers.
+#'
+#' @param annotate
+#' If not \code{NULL}, a character vector of the same length as \code{x},
+#' providing text to display under each chord. This text may not
+#' contain whitespace.
+#'
+#' @param chords_per_line
+#' (Integerish scalar)
+#' Number of chords to display on each line.
+#'
+#' @inheritParams view_abc_string
+#'
 #' @export
-html_from_pi_chord_seq <- function(x,
-                                   annotate = NULL,
-                                   chords_per_line = 5,
-                                   staff_width = 75 * pmin(pmax(2, length(x)), 5),
-                                   play_midi = FALSE,
-                                   download_midi = FALSE,
-                                   ...) {
+view_pi_chord_seq <- function(
+  x,
+  annotate = NULL,
+  chords_per_line = 5,
+  staff_width = 75 * pmin(pmax(2, length(x)), 5),
+  play_midi = FALSE,
+  download_midi = FALSE
+) {
+  html_from_pi_chord_seq(
+    x = x,
+    annotate = annotate,
+    chords_per_line = chords_per_line,
+    staff_width = staff_width,
+    play_midi = play_midi,
+    download_midi = download_midi
+  ) %>%
+    view_html()
+}
+
+html_from_pi_chord_seq <- function(
+  x,
+  annotate = NULL,
+  chords_per_line = 5,
+  staff_width = 75 * pmin(pmax(2, length(x)), 5),
+  play_midi = FALSE,
+  download_midi = FALSE,
+  ...
+) {
   checkmate::qassert(x, "l")
   if (!is.null(annotate)) {
     annotate <- as.character(annotate)
@@ -37,9 +79,4 @@ html_from_pi_chord_seq <- function(x,
                        download_midi = download_midi,
                        staff_width = staff_width,
                        ... = ...)
-}
-
-#' @export
-view_pi_chord_seq <- function(x, ...) {
-  view_html(html_from_pi_chord_seq(x, ...))
 }

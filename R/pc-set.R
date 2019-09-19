@@ -17,7 +17,6 @@ pc_set_key <- tibble::tribble(
 cost_by_sharp <- c(F = 1, C = 2, G = 3, D = 4, A = 5)
 cost_by_flat <- c(B = 1, E = 2, A = 3, D = 4, G = 5)
 
-#' @export
 spell_pcs <- function(x, duplication_cost = 5) {
   if (length(x) == 0L) character()
   checkmate::qassert(x, "X[0,12)")

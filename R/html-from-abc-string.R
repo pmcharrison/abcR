@@ -1,4 +1,4 @@
-#' @export
+# @param ... Further arguments passed to \code{\link{html_from_abc_file}}.
 html_from_abc_string <- function(x,
                                  temp_file = tempfile(fileext = ".abc"),
                                  ...) {

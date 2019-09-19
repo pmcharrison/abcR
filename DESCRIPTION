@@ -2,24 +2,29 @@ Package: abcR
 Title: Renders ABC notation using the abcjs package
 Version: 0.0.0.9006
 Authors@R: person("Peter", "Harrison", email = "pmc.harrison@gmail.com", role = c("aut", "cre"))
-Description: Renders ABC notation using the abcjs package (https://abcjs.net).
+Description: This package provides utility functions for rendering music 
+    notation in interactive R sessions. In RStudio, the rendered notation 
+    appears in the Viewer pane. These functions are intended to help music 
+    researchers to visualise music objects created during their programming 
+    tasks. The current focus is on displaying chord sequences, 
+    but better support may later be added for melodies.
+    Music notation is rendered using the abcjs package (https://abcjs.net),
+    which was written by Paul Rosen and Gregory Dyke,
+    and released under the MIT license.
 Depends: R (>= 3.4.0)
 License: MIT + file LICENSE
 Encoding: UTF-8
 LazyData: true
 Imports: 
     checkmate (>= 1.8.5),
-    shiny (>= 1.1.0),
     htmltools (>= 0.3.6),
     tibble (>= 1.4.2),
     rlang (>= 0.2.1),
     magrittr (>= 1.5),
-    dplyr,
-    knitr (>= 1.20),
-    webshot (>= 0.5.0),
-    purrr
+    dplyr (>= 0.8.3),
+    purrr (>= 0.3.2)
 RoxygenNote: 6.1.1
 URL: https://github.com/pmcharrison/abcR
 BugReports: https://github.com/pmcharrison/abcR/issues
 Suggests: 
-    testthat
+    testthat (>= 2.1.1)

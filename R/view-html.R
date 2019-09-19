@@ -1,5 +1,5 @@
 view_html <- function(x) {
-  # 'eval' is necessary because htmltools changes the working directory
-  html <- eval(x)
+  # 'force' is necessary because htmltools changes the working directory
+  html <- force(x)
   htmltools::html_print(html)
 }

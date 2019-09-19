@@ -1,4 +1,29 @@
+#' View a pitch chord
+#'
+#' Displays a musical chord, defined as a finite set of musical pitches.
+#'
+#' @param x
+#' Chord to display, expressed as a numeric vector of MIDI note numbers.
+#' Only integerish note numbers are supported.
+#'
+#' @inheritParams view_abc_string
+#'
 #' @export
+view_pi_chord <- function(
+  x,
+  play_midi = FALSE,
+  download_midi = FALSE,
+  staff_width = 100
+) {
+  html_from_pi_chord(
+    x = x,
+    play_midi = play_midi,
+    download_midi = download_midi,
+    staff_width = staff_width
+  ) %>%
+    view_html()
+}
+
 html_from_pi_chord <- function(x,
                                play_midi = FALSE,
                                download_midi = FALSE,
@@ -20,12 +45,6 @@ html_from_pi_chord <- function(x,
                        ... = ...)
 }
 
-#' @export
-view_pi_chord <- function(x, ...) {
-  view_html(html_from_pi_chord(x, ...))
-}
-
-#' @export
 spell_pi_chord <- function(x, duplication_cost = 5) {
   checkmate::qassert(x, "X*")
   checkmate::qassert(duplication_cost, "R1[0,]")
